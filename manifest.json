@@ -1,0 +1,44 @@
+
+{
+    "name": "ParaPoopers",
+    "short_name": "ParaPoopers",
+    "icons": [
+        {
+          "src": "assets/img/touch/android-launchericon-48-48.png",
+          "type": "image/png",
+          "sizes": "48x48"
+        }, 
+  
+        {
+          "src": "assets/img/touch/android-launchericon-72-72.png",
+          "type": "image/png",
+          "sizes": "72x72"
+        }, 
+        {
+          "src": "assets/img/touch/android-launchericon-96-96.png",
+          "type": "image/png",
+          "sizes": "96x96"
+        }, 
+        {
+          "src": "assets/img/touch/android-launchericon-144-144.png",
+          "type": "image/png",
+          "sizes": "144x144"
+        }, 
+        {
+          "src": "assets/img/touch/android-launchericon-192-192.png",
+          "type": "image/png",
+          "sizes": "191x192"
+        }, 
+        {
+          "src": "assets/img/touch/android-launchericon-512-512.png",
+          "type": "image/png",
+          "sizes": "512x512"
+        } 
+        ],
+    "start_url": "/parapoopers/?homescreen=1",
+    "scope": "/",
+    "display": "standalone",
+    "background_color": "#29C4DC",
+    "theme_color": "#29C4DC"
+  }
+  
