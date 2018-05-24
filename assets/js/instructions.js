@@ -3,6 +3,8 @@ var Instructions = {
     preload: function () {},
     create: function () {
 
+        Clouds.makeClouds();
+
         textStyle = {
             font: '30px Fredoka One',
             fill: '#ffff00',
@@ -13,12 +15,11 @@ var Instructions = {
 
         titleText = game.add.text(game.width/2, settings.splashNameTop, "How to play", textStyle);
         titleText.anchor.set(0.5);
-
     
         //Add tap to play
         if(!settings.isMobile){
         instructionHeadingTextStyle = { font: '20px Fredoka One' , fill: '#FFFF00', align:'center', boundsAlignH: "center", boundsAlignV: "middle" };
-        instructionHeading = game.add.text(game.width/2, (game.height)-80, settings.actionText, instructionHeadingTextStyle);
+        instructionHeading = game.add.text(game.width/2, game.height-settings.ctaOffset, settings.actionText, instructionHeadingTextStyle);
         instructionHeading.anchor.set(0.5);
         instructionHeading.alpha = 0;
         instructionHeadingTween = game.add.tween(instructionHeading).to( { alpha: 1 }, 800, Phaser.Easing.Linear.None, true, 0, 800, true);
@@ -36,7 +37,6 @@ var Instructions = {
         titleText = game.add.text(game.width/2, game.height-(game.height/4)-settings.instructionsOffset, settings.instructionsText, textStyle);
         titleText.anchor.set(0.5, 0);
         }
-
 
         //Instructions
         if(settings.isMobile){
@@ -67,13 +67,9 @@ var Instructions = {
         bottleText.anchor.set(0.5, 0);
         }
         
-
         game.input.onTap.add(function(){
             game.state.start('Game');
         }, this);
-
-
-    
     },
     update: function () {
     },

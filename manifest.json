@@ -1,4 +1,3 @@
-
 {
     "name": "ParaPoopers",
     "short_name": "ParaPoopers",
@@ -35,7 +34,7 @@
           "sizes": "512x512"
         } 
         ],
-    "start_url": "/parapoopers/?homescreen=1",
+    "start_url": "/?homescreen=1",
     "scope": "/",
     "display": "standalone",
     "background_color": "#29C4DC",

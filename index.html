@@ -4,79 +4,147 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge"> <!-- † -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no">
-    <title>ParaPoopers</title>
+    <title>Parapoopers</title>
 
-    <link rel="dns-prefetch" href="//simondarcyonline.com">
-    <link rel="dns-prefetch" href="//ajax.googleapis.com">
+    <link rel="dns-prefetch preconnect" href="//parapoopers.com">
+    <link rel="dns-prefetch preconnect" href="//ajax.googleapis.com">
+    <link rel="dns-prefetch preconnect" href="https://www.googletagmanager.com">
+
+    <link href=favicon.png rel="shortcut icon" />
+
+    <!-- PWA stuff -->
     <link rel="manifest" href="manifest.json">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="HandheldFriendly" content="true" />
-
-    <meta name="description" content="The ultimate parenting game. Collect bottles, avoid poo, beat the hight score!">
-
-    
+    <meta name="msapplication-TileColor" content="#29C4DC">
+    <meta name="theme-color" content="#29C4DC">
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <meta name="apple-mobile-web-app-title" content="ParaPoopers">
+    <meta name="apple-mobile-web-app-title" content="Parapoopers">
+    <link rel="apple-touch-startup-image" href="assets/img/splash/launch-640x1136.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="assets/img/splash/launch-750x1294.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="assets/img/splash/launch-1242x2148.png" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="assets/img/splash/launch-1125x2436.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="assets/img/splash/launch-1536x2048.png" media="(min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="assets/img/splash/launch-1668x2224.png" media="(min-device-width: 834px) and (max-device-width: 834px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)">
+    <link rel="apple-touch-startup-image" href="assets/img/splash/launch-2048x2732.png" media="(min-device-width: 1024px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)">
+  
+    <meta name="description" content="The ultimate parenting game. Collect bottles, avoid poo, beat the high score!">
+
     <link rel="apple-touch-icon" sizes="128x128" href="assets/img/touch/android-launchericon-128-128.png">
     <meta name="google" content="notranslate">
-    <meta name="subject" content="The ultimate parenting game. Collect bottles, avoid poo, beat the hight score!">
+    <meta name="subject" content="The ultimate parenting game. Collect bottles, avoid poo, beat the high score!">
     <meta name="rating" content="General">
 
+    <!-- Signature -->
     <link rel="me" href="https://google.com/profiles/sidarcy" type="text/html">
     <link rel="me" href="mailto:sidarcy@gmail.com">
 
-    <!-- FB -->
-    <meta property="og:url" content="http://www.simondarcyonline.com/parapoopers/">
+    <!-- Facebook Meta -->
+    <meta property="og:url" content="https://www.parapoopers.com/">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="ParaPoopers">
-    <meta property="og:description" content="The ultimate parenting game. Collect bottles, avoid poo, beat the hight score!">
-    <meta property="og:image" content="http://www.simondarcyonline.com/parapoopers/assets/img/social.png">
+    <meta property="og:title" content="Parapoopers">
+    <meta property="og:description" content="Play the ultimate parenting game. Collect bottles, avoid poo, beat the high score!">
+    <meta property="og:image" content="https://www.parapoopers.com/assets/img/social.png">
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:site_name" content="simondarcyonline.com">
+    <meta property="og:site_name" content="parapoopers.com">
     <meta property="og:locale" content="en_US">
     <meta property="article:author" content="Simon Darcy">
 
+    <!-- Twitter Meta -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@digitaldaddiary">
+    <meta name="twitter:creator" content="@digitaldaddiary">
+    <meta name="twitter:url" content="https://www.parapoopers.com">
+    <meta name="twitter:title" content="Play Parapoopers">
+    <meta name="twitter:description" content="Play the ultimate parenting game. Collect bottles, avoid poo, beat the high score!">
+    <meta name="twitter:image" content="https://www.parapoopers.com/assets/img/social.png">
+
+    <!-- Load Phaser -->
     <script src="assets/js/phaser.min.js"></script>
     <style type="text/css">
         body{
             margin: 0;
             padding: 0;
             overflow: hidden;
+            background: #29C4DC;
         }
-
         canvas{
             margin: auto;
         }
-
-        @media (min-width: 1160px) {
-            body{
-                background: #f5f5f5;
-              }
-            canvas{
-                
-            }
+        #btn{
+            display: none;
+            background-color: #fa5c5c;
+            color: white;
+            text-shadow: 0 1px 0px #e54747;
+            height: auto;
+            padding: 0.5em 1em;
+            font-size: 120%;
+            user-select: none;
+            box-sizing: border-box;
+            display: block;
+            background: #FA5C5C;
+            text-decoration: none;
+            cursor: pointer;
+            border-radius: 3px;
+            border: 1px solid rgba(0,0,0,0.1);
+            box-shadow: inset 0 0 1px rgba(255,255,255,0.21);
+            text-align: center;
+            line-height: 33px;
+            font-weight: bold;
+            max-width: 240px;
+            font-family: Lato, sans-serif;
+            margin: 25% auto;
         }
-
+        #btn:hover{
+            box-shadow: inset 0 100px 1px rgba(255,255,255,0.21);
+        }
+    
     </style>
 </head>
 <body>
 
+    <!-- https://www.dailydot.com/debug/chrome-autoplay-block-games/ -->
+    <div id="btn">Tap to play game!</div>
 
-
-
+    <!-- Game will be injected here -->
     <div id="game"></div>
 
-    <script type="text/javascript" src="assets/js/input.js"></script>
-    <script type="text/javascript" src="assets/js/settings.js?v=2.5"></script>
-    <script type="text/javascript" src="assets/js/preloader.js?v=2.5"></script>
-    <script type="text/javascript" src="assets/js/splash.js?v=2.5"></script>
-    <script type="text/javascript" src="assets/js/instructions.js?v=2.5"></script>
-    <script type="text/javascript" src="assets/js/game.js?v=2.5"></script>
-    <script type="text/javascript" src="assets/js/game-over.js?v=2.5"></script>
-    <script type="text/javascript" src="assets/js/main.js?v=2.5"></script>
+    <!-- Load Game Scripts -->
+    <script type="text/javascript" src="assets/js/settings.js?v=0.1.10"></script>
+    <script type="text/javascript" src="assets/js/clouds.js?v=0.1.10"></script>
+    <script type="text/javascript" src="assets/js/preloader.js?v=0.1.10"></script>
+    <script type="text/javascript" src="assets/js/splash.js?v=0.1.10"></script>
+    <script type="text/javascript" src="assets/js/instructions.js?v=0.1.10"></script>
+    <script type="text/javascript" src="assets/js/game.js?v=0.1.10"></script>
+    <script type="text/javascript" src="assets/js/game-over.js?v=0.1.10"></script>
+    <script type="text/javascript" src="assets/js/main.js?v=0.1.10"></script>
+
+    <script>
+    //Service Worker
+    if('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js?v=0.1.10', { scope: '/' })
+          .then(function(registration) {
+                console.log('Service Worker Registered');
+          });
+        navigator.serviceWorker.ready.then(function(registration) {
+           console.log('Service Worker Ready');
+        });
+      }
+
+    </script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119788480-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-119788480-1');
+</script>
+
 
 </body>
 </html>

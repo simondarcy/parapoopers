@@ -17,6 +17,9 @@ var Game = {
     preload: function () {
     },
     create: function () {
+
+        Clouds.makeClouds();
+
         this.addPlayer();
 
         this.createLives();
@@ -24,7 +27,7 @@ var Game = {
         this.cloudGroup = game.add.group();
         this.pooGroup = game.add.group();
         this.bottleGroup = game.add.group();
-        this.addCloud();
+    
         this.addBottle();
         this.addPoo();
 
@@ -49,8 +52,8 @@ var Game = {
         timer = game.time.create(false);
 
         //  Set a TimerEvent to occur after 2 seconds
-        timer.loop(5000, function(){ 
-            if(pooGap>50){
+        timer.loop(settings.pooTimer, function(){ 
+            if(pooGap>=20){
                 pooGap -= 5;
             }
             //console.log(pooGap);
@@ -94,7 +97,6 @@ var Game = {
             score++;
             scoreCount.setText(score);  
             
-
             //create emmiter
         
             var whiteEmitter = game.add.emitter(0, 0, 100);
@@ -128,16 +130,13 @@ var Game = {
             emitter.y = poo.y;
             emitter.start(true, 4000, null, 10);
             
-
+            lives--;
+            livesGroup.children[lives].frame=1;
+            if(lives==0){
+                game.state.start('GameOver');
+            }
             //  And 1 seconds later we'll destroy the emitter
             game.time.events.add(1000, function(){
-        
-                lives--;
-                livesGroup.children[lives].frame=1;
-                if(lives==0){
-                    game.state.start('GameOver');
-                }
-                
                 emitter.destroy();
             }, this);
 
@@ -190,9 +189,6 @@ var Game = {
         //Make player only move horizontal
         //player.body.immovable = true;
 
-        
-
-
         var BabyAnim = player.animations.add('fly');
         player.animations.play('fly', 8, true);
         // tweenA = game.add.tween(player).to( { angle: 25 }, 1000, "Quart.easeOut");
@@ -211,48 +207,16 @@ var Game = {
     
     render:function() {
         //game.debug.body(player);
-        game.debug.text( "v2.5", 10, game.height-10 );
+        //game.debug.text( "0.1.9", 10, game.height-10 );
     },
     //Create Houses
 
 };
 
-
-//Cloud
-Cloud = function (game) {
-    Phaser.Sprite.call(this, game, game.rnd.between(-20, game.width+20), game.rnd.between(game.height, game.height+100), "cloud"+game.rnd.between(1, 4));
-    game.physics.enable(this, Phaser.Physics.ARCADE);
-
-    this.anchor.set(0.5);
-    this.scale.setTo(settings.cloudScale);
-    this.body.velocity.y = -100;
-    this.body.immovable = true;
-
-    
-    this.placeCloud = true;
-    game.world.bringToTop(player);
-};
-Cloud.prototype = Object.create(Phaser.Sprite.prototype);
-Cloud.prototype.constructor = Cloud;
-Cloud.prototype.update = function(){
-
-    if(this.placeCloud && this.y < (game.height-cloudGap) ){
-        this.placeCloud = false;
-        Game.addCloud(this.parent);
-   }   
-
-    //detroy once left screen
-    if(this.y < -20){
-        this.destroy();
-    }
-    //check when ready to poo
-};
-
 //Bottle
 Bottle = function (game) {
-    Phaser.Sprite.call(this, game, game.rnd.between(-20, game.width+20), game.rnd.between(game.height, game.height+100), "bottle");
+    Phaser.Sprite.call(this, game, game.rnd.between(0, game.width+10), game.rnd.between(game.height, game.height+100), "bottle");
     game.physics.enable(this, Phaser.Physics.ARCADE);
-
     this.anchor.set(0.5);
     this.scale.setTo(settings.bottleScale);
     this.body.velocity.y = -100;
@@ -296,9 +260,8 @@ processHandler = function(){
 
 //Poo
 Poo = function (game) {
-    Phaser.Sprite.call(this, game, game.rnd.between(-20, game.width+20), game.rnd.between(game.height, game.height+100), "poo");
+    Phaser.Sprite.call(this, game, game.rnd.between(0, game.width+10), game.rnd.between(game.height, game.height+100), "poo");
     game.physics.enable(this, Phaser.Physics.ARCADE);
-
     this.anchor.set(0.5);
     this.scale.setTo(settings.pooScale);
     this.body.velocity.y = -130;

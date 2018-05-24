@@ -2,54 +2,27 @@ var Splash = {
     init: function () {},
     preload: function () {},
     create: function () {
-
-
-        var player = game.add.sprite(game.world.centerX, game.height-200, 'baby');
-        player.anchor.set(0.5);
-        player.scale.set(0.5);
-        var BabyAnim = player.animations.add('fly');
-        player.animations.play('fly', 8, true);
-
-        textStyle = {
-            font: '22px Fredoka One',
-            fill: '#ffffff',
-            align: 'center',
-            boundsAlignH: "center",
-            boundsAlignV: "middle"
-        };
-
-        nameText = game.add.text(game.width/2, settings.splashNameTop, "Digital Dad's", textStyle);
-        nameText.anchor.set(0.5);
-
-        textStyle = {
-            font: '30px Fredoka One',
-            fill: '#ffffff',
-            align: 'center',
-            boundsAlignH: "center",
-            boundsAlignV: "middle"
-        };
-
-        titleText = game.add.text(game.width/2, nameText.y+settings.splashTitleOffset, "ParaPoopers", textStyle);
-        titleText.anchor.set(0.5, 1);
-
+    
+        Clouds.makeClouds();
+    
         music = game.add.audio('music');
         music.loop = true;
         music.play();
 
+        var title = game.add.sprite(game.world.centerX, settings.splashNameTop, 'title');
+        title.anchor.set(0.5, 0);
+        title.scale.set(0.5);
 
-        //Add tap to replay
-        instructionHeadingTextStyle = { font: '20px Fredoka One' , fill: '#FFFF00', align:'center', boundsAlignH: "center", boundsAlignV: "middle" };
-        instructionHeading = game.add.text(game.width/2, titleText.y+60, settings.actionText, instructionHeadingTextStyle);
-        instructionHeading.anchor.set(0.5);
-        instructionHeading.alpha = 0;
-        instructionHeadingTween = game.add.tween(instructionHeading).to( { alpha: 1 }, 800, Phaser.Easing.Linear.None, true, 0, 800, true);
+        var dad = game.add.sprite(game.world.centerX, game.world.centerY, 'start');
+        dad.anchor.set(0.5);
+        dad.scale.set(0.35);
 
-        instructionHeading.inputEnabled = true;
+        var startButton = game.add.sprite(game.world.centerX, (dad.y+dad.height)-90, 'play');
+        startButton.anchor.set(0.5, 1);
+        startButton.scale.set(0.4);
+        startButton.inputEnabled = true;
 
-
-
-        game.input.onTap.add(function(){
-
+        startButton.events.onInputDown.add(function(){
 
             if (typeof(Storage) === "undefined") {
                 game.state.start('Instructions');
@@ -66,11 +39,23 @@ var Splash = {
                 game.state.start('Instructions');
             }
 
-
-
         }, this);
 
+        linkTextStyle = {
+            font: '16px Fredoka One',
+            fill: '#ffffff',
+            align: 'center',
+            boundsAlignH: "center",
+            boundsAlignV: "middle"
+        };
 
+        linkText = game.add.text(game.world.centerX, game.height, '@DigitalDadDiary', linkTextStyle);
+        linkText.anchor.set(0.5, 1);
+        linkText.inputEnabled = true;
+        linkText.events.onInputDown.add(function(){
+            url = "https://www.facebook.com/digitaldaddiary";
+            window.open(url, "_blank")
+        }, this);
 
     },
     update: function () {}
